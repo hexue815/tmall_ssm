@@ -13,4 +13,8 @@ public interface CategoryMapper {
     int add(Category category);
 
     int delete(@Param("id") int id);
+
+    Category getCategoryByID(@Param("id") int id);
+
+    int update(Category category);
 }

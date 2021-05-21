@@ -13,4 +13,8 @@ public interface CategoryService {
     int add(Category category);
 
     int delete(int id);
+
+    Category getCategoryByID(int id);
+
+    int update(Category category);
 }

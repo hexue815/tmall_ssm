@@ -21,4 +21,14 @@
     <delete id="delete" parameterType="int">
         delete from category where id = #{id}
     </delete>
+
+    <select id="getCategoryByID" parameterType="int" resultType="Category">
+        select * from category where id = #{id}
+    </select>
+
+    <update id="update" parameterType="Category">
+        update category
+        set name = #{name}
+        where id = #{id};
+    </update>
 </mapper>
