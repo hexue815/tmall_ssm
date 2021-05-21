@@ -1,5 +1,7 @@
 package com.xue.controller;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.xue.pojo.Category;
 import com.xue.service.CategoryService;
 import com.xue.utils.ImageUtil;
@@ -29,8 +31,17 @@ public class CategoryController {
 
     @RequestMapping("admin_category_list")
     public String list(Model model, Page page){
-        List<Category> categories = categoryService.list(page);
+        /*List<Category> categories = categoryService.list(page);
         int total = categoryService.total();
+        page.setTotal(total);
+        model.addAttribute("categories", categories);
+        model.addAttribute("page", page);*/
+        //通过分页插件指定分页参数
+        PageHelper.offsetPage(page.getStart(), page.getCount());
+        //调用listByPageHelper获取对应的分页数据
+        List<Category> categories = categoryService.listByPageHelper();
+        //通过PageInfo获取总数
+        int total = (int) new PageInfo<>(categories).getTotal();
         page.setTotal(total);
         model.addAttribute("categories", categories);
         model.addAttribute("page", page);

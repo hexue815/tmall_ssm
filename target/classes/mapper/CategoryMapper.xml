@@ -10,6 +10,10 @@
         </if>
     </select>
 
+    <select id="listByPageHelper" resultType="Category">
+        select * from category
+    </select>
+
     <select id="total" resultType="int">
         select count(*) from category;
     </select>

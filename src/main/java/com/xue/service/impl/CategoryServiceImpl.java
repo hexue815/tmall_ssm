@@ -21,6 +21,11 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
+    public List<Category> listByPageHelper() {
+        return categoryMapper.listByPageHelper();
+    }
+
+    @Override
     public int total() {
         return categoryMapper.total();
     }

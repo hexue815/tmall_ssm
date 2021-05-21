@@ -8,6 +8,9 @@ import java.util.List;
 
 public interface CategoryMapper {
     List<Category> list(Page page);
+
+    List<Category> listByPageHelper();
+
     public int total();
 
     int add(Category category);

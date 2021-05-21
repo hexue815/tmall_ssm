@@ -8,6 +8,8 @@ import java.util.List;
 public interface CategoryService {
     List<Category> list(Page page);
 
+    List<Category> listByPageHelper();
+
     int total();
 
     int add(Category category);
