@@ -57,6 +57,4 @@
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
         <property name="basePackage" value="com.xue.mapper"/>
     </bean>
-
-
 </beans>
