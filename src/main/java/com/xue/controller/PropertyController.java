@@ -42,6 +42,20 @@ public class PropertyController {
 
         return "admin/listProperty";
     }
+
+    @RequestMapping("admin_property_add")
+    public String add(Property property){
+        propertyService.insert(property);
+        return "redirect:admin_property_list?cid=" + property.getCid();
+    }
+
+    @RequestMapping("admin_property_edit")
+    public String edit(@RequestParam("id") int id, Model model){
+        Property property = propertyService.selectByID(id);
+        model.addAttribute("property", property);
+        return "admin/editProperty";
+    }
+
 }
 
 

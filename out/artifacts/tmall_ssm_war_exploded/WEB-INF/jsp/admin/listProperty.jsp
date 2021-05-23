@@ -42,5 +42,25 @@
         <div class="pageDiv">
             <%@include file="../include/admin/adminPage.jsp"%>
         </div>
+
+    <div class="panel panel-warning addDiv">
+        <div class="panel-heading">新增属性</div>
+        <div class="panel-body"></div>
+        <form action="admin_property_add" method="post" id="addForm">
+            <table class="addTable">
+                <tr>
+                    <td>属性名称</td>
+                    <td><input type="text" id="name" name="name" class="form-control"></td>
+                </tr>
+                <tr class="submitTR">
+                    <td colspan="2" align="center">
+                        <input type="hidden" name="cid" value="${category.id}">
+                        <button type="submit" class="btn btn-success">提 交</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+
     </div>
 
