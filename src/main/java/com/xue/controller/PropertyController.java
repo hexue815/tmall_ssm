@@ -53,9 +53,23 @@ public class PropertyController {
     public String edit(@RequestParam("id") int id, Model model){
         Property property = propertyService.selectByID(id);
         model.addAttribute("property", property);
+        Category category = categoryService.getCategoryByID(property.getCid());
+        model.addAttribute("category", category);
         return "admin/editProperty";
     }
 
+    @RequestMapping("admin_property_update")
+    public String update(Property property){
+        propertyService.updateProperty(property);
+        return "redirect:admin_property_list?cid=" + property.getCid();
+    }
+
+    @RequestMapping("admin_property_delete")
+    public String delete(@RequestParam("id") int id){
+        Property property = propertyService.selectByID(id);
+        propertyService.deleteByID(id);
+        return "redirect:admin_property_list?cid=" + property.getCid();
+    }
 }
 
 

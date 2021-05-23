@@ -1,12 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" import="java.util.*" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="java.util.*" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@include file="../include/admin/adminHeader.jsp"%>
 <%@include file="../include/admin/adminNavigator.jsp"%>
 
 
     <script>
-
+        $("#addForm").submit(function () {
+            if (checkEmpty("name", "属性名称"))
+                return true;
+            return false;
+        });
     </script>
     <title>属性管理</title>
     <div class="workingArea">
@@ -31,8 +34,8 @@
                     <tr>
                         <td>${p.id}</td>
                         <td>${p.name}</td>
-                        <td><a href=""><span class="glyphicon glyphicon-edit"></span></a></td>
-                        <td><a href=""><span class="glyphicon glyphicon-trash"></span></a></td>
+                        <td><a href="admin_property_edit?id=${p.id}"><span class="glyphicon glyphicon-edit"></span></a></td>
+                        <td><a href="admin_property_delete?id=${p.id}"><span class="glyphicon glyphicon-trash"></span></a></td>
                     </tr>
                 </c:forEach>
             </tbody>
