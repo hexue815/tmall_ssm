@@ -61,7 +61,7 @@
     <div class="panel panel-warning addDiv">
         <div class="panel-heading">新增产品</div>
         <div class="panel-body">
-            <form action="" method="post" id="addForm" enctype="multipart/form-data">
+            <form action="admin_product_add" method="post" id="addForm" enctype="multipart/form-data">
                 <table class="addTable">
                     <tr>
                         <td>产品名称</td>
@@ -85,7 +85,7 @@
                     </tr>
                     <tr class="submitTR">
                         <td colspan="2" align="center">
-                            <input type="hidden" id="cid" value="${category.id}">
+                            <input type="hidden" id="cid" name="cid" value="${category.id}">
                             <button type="submit" class="btn btn-success">提 交</button>
                         </td>
                     </tr>

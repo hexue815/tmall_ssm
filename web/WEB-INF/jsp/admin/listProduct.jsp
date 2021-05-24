@@ -48,7 +48,7 @@
                     <td><a href=""><span class="glyphicon glyphicon-picture"></span></a></td>
                     <td><a href=""><span class="glyphicon glyphicon-list"></span></a></td>
                     <td><a href=""><span class="glyphicon glyphicon-edit"></span></a></td>
-                    <td><a href=""><span class="glyphicon glyphicon-trash"></span></a></td>
+                    <td><a href="admin_product_delete?id=${p.id}"><span class="glyphicon glyphicon-trash"></span></a></td>
                 </tr>
             </c:forEach>
             </tbody>
@@ -85,7 +85,7 @@
                     </tr>
                     <tr class="submitTR">
                         <td colspan="2" align="center">
-                            <input type="hidden" id="cid" value="${category.id}">
+                            <input type="hidden" id="cid" name="cid" value="${category.id}">
                             <button type="submit" class="btn btn-success">提 交</button>
                         </td>
                     </tr>

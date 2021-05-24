@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -39,6 +40,20 @@ public class ProductController {
         model.addAttribute("category", category);
         model.addAttribute("page", page);
         return "admin/listProduct";
+    }
+
+    @RequestMapping("admin_product_add")
+    public String add(Product product){
+        productService.insert(product);
+        product.setCreateDate(new Date());
+        return "redirect:admin_product_list?cid=" + product.getCid();
+    }
+
+    @RequestMapping("admin_product_delete")
+    public String delete(@RequestParam("id") int id){
+        Product product = productService.getProductByID(id);
+        productService.delete(id);
+        return "redirect:admin_product_list?cid=" + product.getCid();
     }
 }
 
