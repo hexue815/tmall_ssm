@@ -5,10 +5,12 @@
 
 <title>产品管理</title>
 <script>
-    $("#addForm").submit(function () {
-       if (!checkEmpty("name", "产品名称"))
-           return false;
-       return true;
+    $(function () {
+        $("#addForm").submit(function () {
+            if (!checkEmpty("name", "产品名称"))
+                return false;
+            return true;
+        });
     });
 </script>
 <div class="workingArea">
@@ -39,15 +41,17 @@
             <c:forEach items="${products}" var="p">
                 <tr>
                     <td>${p.id}</td>
-                    <td><img width="40px" src="img/productSingle/${p.id}.jpg"></td>
+                    <td>
+                        <c:if test="${!empty p.firstProductImage}"><img width="40px" src="img/productSingle/${p.firstProductImage.id}.jpg"></c:if>
+                    </td>
                     <td>${p.name}</td>
                     <td>${p.subTitle}</td>
                     <td>${p.originalPrice}</td>
                     <td>${p.promotePrice}</td>
                     <td>${p.stock}</td>
-                    <td><a href=""><span class="glyphicon glyphicon-picture"></span></a></td>
+                    <td><a href="admin_productImage_list?pid=${p.id}"><span class="glyphicon glyphicon-picture"></span></a></td>
                     <td><a href=""><span class="glyphicon glyphicon-list"></span></a></td>
-                    <td><a href=""><span class="glyphicon glyphicon-edit"></span></a></td>
+                    <td><a href="admin_product_edit?id=${p.id}"><span class="glyphicon glyphicon-edit"></span></a></td>
                     <td><a href="admin_product_delete?id=${p.id}"><span class="glyphicon glyphicon-trash"></span></a></td>
                 </tr>
             </c:forEach>

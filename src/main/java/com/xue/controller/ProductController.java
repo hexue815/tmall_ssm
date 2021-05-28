@@ -33,6 +33,9 @@ public class ProductController {
         Category category = categoryService.getCategoryByID(cid);
         PageHelper.offsetPage(page.getStart(),page.getCount());
         List<Product> products = productService.getProductsByCid(cid);
+        for (Product product : products) {
+            productService.setFirstProductImage(product);
+        }
         int total = (int) new PageInfo<>(products).getTotal();
         page.setTotal(total);
         page.setParam("&cid=" + category.getId());
@@ -53,6 +56,21 @@ public class ProductController {
     public String delete(@RequestParam("id") int id){
         Product product = productService.getProductByID(id);
         productService.delete(id);
+        return "redirect:admin_product_list?cid=" + product.getCid();
+    }
+
+    @RequestMapping("admin_product_edit")
+    public String edit(@RequestParam("id") int id, Model model){
+        Product product = productService.getProductByID(id);
+        Category category = categoryService.getCategoryByID(product.getCid());
+        model.addAttribute("category", category);
+        model.addAttribute("product", product);
+        return "admin/editProduct";
+    }
+
+    @RequestMapping("admin_product_update")
+    public String update(Product product){
+        productService.update(product);
         return "redirect:admin_product_list?cid=" + product.getCid();
     }
 }

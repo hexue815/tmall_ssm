@@ -20,4 +20,5 @@ public class Product {
     private Date createDate;
 
     private Category category;
+    private ProductImage firstProductImage;
 }
