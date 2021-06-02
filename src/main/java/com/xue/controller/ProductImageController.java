@@ -48,9 +48,32 @@ public class ProductImageController {
     }
 
     @RequestMapping("admin_productImage_delete")
-    public String delete(@RequestParam("id") int id){
+    public String delete(@RequestParam("id") int id, HttpSession session){
+        ProductImage productImage = productImageService.selectProductImageByID(id);
+        String fileName = id + "jpg";
+        String imageFolder;
+        String imageFolder_small;
+        String imageFolder_middle;
+
+        if (productImageService.type_single.equals(productImage.getType())){
+            imageFolder = session.getServletContext().getRealPath("img/productSingle");
+            imageFolder_small = session.getServletContext().getRealPath("img/productSingle_small");
+            imageFolder_middle = session.getServletContext().getRealPath("img/productSingle_middle");
+
+            File imageFile = new File(imageFolder, fileName);
+            File file_small = new File(imageFolder_small, fileName);
+            File file_middle = new File(imageFolder_middle, fileName);
+            imageFile.delete();
+            file_small.delete();
+            file_middle.delete();
+        }else {
+            imageFolder = session.getServletContext().getRealPath("img/productDetail");
+            File imageFile = new File(imageFolder, fileName);
+            imageFile.delete();
+        }
+
         productImageService.deleteProductImageByID(id);
-        return "redirect:admin_productImage_list";
+        return "redirect:admin_productImage_list?pid=" + productImage.getPid();
     }
 
     @RequestMapping("admin_productImage_add")

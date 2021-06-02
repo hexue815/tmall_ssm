@@ -37,7 +37,7 @@
                             <form method="post" class="addFormSingle" action="admin_productImage_add" enctype="multipart/form-data">
                                 <table class="addTable">
                                     <tr>
-                                        <td>请选择本地图片 尺寸400x400 为夹</td>
+                                        <td>请选择本地图片 尺寸400x400 为佳</td>
                                     </tr>
                                     <tr>
                                         <td align="center">
@@ -79,10 +79,55 @@
                     </table>
                 </div>
             </td>
-            <td>
-
+            <td class="addPictureTableTD">
+                <div>
+                    <div class="panel panel-warning addPictureDiv">
+                        <div class="panel-heading">新增产品<b class="text-primary"> 详情 </b>图片</div>
+                        <div class="panel-body">
+                            <form action="admin_productImage_add" method="post" class="addFormDetail" enctype="multipart/form-data">
+                                <table class="addTable">
+                                    <tr>
+                                        <td>请选择本地图片 尺寸790x790 为佳</td>
+                                    </tr>
+                                    <tr>
+                                        <td align="center"><input id="filepathDetail" type="file" name="image"></td>
+                                    </tr>
+                                    <tr class="submitTR">
+                                        <td align="center">
+                                            <input type="hidden" name="type" value="type_detail">
+                                            <input type="hidden" name="pid" value="${product.id}">
+                                            <button type="submit" class="btn btn-success">提 交</button>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </form>
+                        </div>
+                    </div>
+                    <table class="table table-striped table-condensed table-hover table-bordered">
+                        <thead>
+                        <tr class="success">
+                            <th>ID</th>
+                            <th>产品详情图片缩略图</th>
+                            <th>删除</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <c:forEach items="${productImagesDetails}" var="pid">
+                            <tr>
+                                <td>${pid.id}</td>
+                                <td>
+                                    <a title="点击查看原图" href="img/productDetail/${pid.id}.jpg"><img height="50px" src="img/productDetail/${pid.id}.jpg"></a>
+                                </td>
+                                <td>
+                                    <a deleteLink="true" href="admin_productImage_delete?id=${pid.id}" class="glyphicon glyphicon-trash"></a>
+                                </td>
+                            </tr>
+                        </c:forEach>
+                        </tbody>
+                    </table>
+                </div>
             </td>
         </tr>
     </table>
 </div>
-
+<%@include file="../include/admin/adminFooter.jsp"%>
