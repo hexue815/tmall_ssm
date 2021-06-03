@@ -11,6 +11,6 @@
     <title>$Title$</title>
   </head>
   <body>
-  $END$
+  <a href="admin_category_list">跳转</a>
   </body>
 </html>
